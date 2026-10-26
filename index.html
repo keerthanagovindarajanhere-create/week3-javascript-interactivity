@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Spectra '26 – a two-day student tech symposium with workshops, hackathons and talks.">
+  <title>Spectra '26 | Student Tech Symposium</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Skip link for keyboard users -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============ HEADER / NAVIGATION ============ -->
+  <header class="site-header" id="siteHeader">
+    <nav class="nav container" aria-label="Main navigation">
+      <a href="#home" class="logo">Spectra<span>'26</span></a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#events" class="nav-link">Events</a></li>
+        <li><a href="#register" class="nav-link">Register</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+        <li>
+          <button class="theme-toggle" id="themeToggle" aria-label="Switch to dark mode" title="Toggle theme">
+            <span class="theme-icon" aria-hidden="true">🌙</span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home">
+      <div class="container hero-inner">
+        <p class="eyebrow">Student Tech Symposium · 14–15 Nov 2026</p>
+        <h1>Build. Break. <span class="typed" id="typedText" aria-live="polite">Learn.</span></h1>
+        <p class="hero-sub">Two days of hands-on workshops, a 24-hour hackathon and talks from people who actually ship things.</p>
+
+        <!-- Countdown timer (filled by JS) -->
+        <div class="countdown" id="countdown" aria-label="Time left until the event">
+          <div class="cd-box"><span id="cdDays">00</span><small>Days</small></div>
+          <div class="cd-box"><span id="cdHours">00</span><small>Hours</small></div>
+          <div class="cd-box"><span id="cdMins">00</span><small>Minutes</small></div>
+          <div class="cd-box"><span id="cdSecs">00</span><small>Seconds</small></div>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#register" class="btn btn-primary">Register now</a>
+          <a href="#events" class="btn btn-ghost">Browse events</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT + STATS ============ -->
+    <section class="section" id="about">
+      <div class="container">
+        <h2 class="section-title reveal">What is Spectra?</h2>
+        <p class="section-lead reveal">Spectra is a student-run symposium built around one idea: you learn faster when you build something with other people. Every session is hands-on, and every track ends with something you can put on GitHub.</p>
+
+        <div class="stats">
+          <div class="stat reveal"><span class="stat-num" data-target="1200">0</span><span class="stat-label">Participants</span></div>
+          <div class="stat reveal"><span class="stat-num" data-target="18">0</span><span class="stat-label">Events</span></div>
+          <div class="stat reveal"><span class="stat-num" data-target="40">0</span><span class="stat-label">Colleges</span></div>
+          <div class="stat reveal"><span class="stat-num" data-target="24">0</span><span class="stat-label">Hackathon hours</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EVENTS (rendered dynamically) ============ -->
+    <section class="section section-alt" id="events">
+      <div class="container">
+        <h2 class="section-title reveal">Events</h2>
+
+        <div class="event-controls">
+          <div class="filters" role="tablist" aria-label="Filter events by category">
+            <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+            <button class="filter-btn" data-filter="workshop" role="tab" aria-selected="false">Workshops</button>
+            <button class="filter-btn" data-filter="competition" role="tab" aria-selected="false">Competitions</button>
+            <button class="filter-btn" data-filter="talk" role="tab" aria-selected="false">Talks</button>
+          </div>
+          <label class="search-wrap">
+            <span class="visually-hidden">Search events</span>
+            <input type="search" id="eventSearch" placeholder="Search events…" autocomplete="off">
+          </label>
+        </div>
+
+        <p class="result-count" id="resultCount" aria-live="polite"></p>
+        <div class="event-grid" id="eventGrid"></div>
+        <p class="empty-state" id="emptyState" hidden>No events match that search. Try another keyword.</p>
+      </div>
+    </section>
+
+    <!-- ============ REGISTRATION FORM ============ -->
+    <section class="section" id="register">
+      <div class="container narrow">
+        <h2 class="section-title reveal">Register</h2>
+        <p class="section-lead reveal">Fill this in and we'll email your pass. Fields marked * are required.</p>
+
+        <form class="reg-form reveal" id="regForm" novalidate>
+          <div class="form-row">
+            <div class="field">
+              <label for="fullName">Full name *</label>
+              <input type="text" id="fullName" name="fullName" autocomplete="name">
+              <small class="error-msg" aria-live="polite"></small>
+            </div>
+            <div class="field">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" autocomplete="email">
+              <small class="error-msg" aria-live="polite"></small>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="phone">Phone (10 digits) *</label>
+              <input type="tel" id="phone" name="phone" inputmode="numeric" autocomplete="tel">
+              <small class="error-msg" aria-live="polite"></small>
+            </div>
+            <div class="field">
+              <label for="college">College *</label>
+              <input type="text" id="college" name="college">
+              <small class="error-msg" aria-live="polite"></small>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="eventSelect">Event you're most interested in *</label>
+            <select id="eventSelect" name="eventSelect">
+              <option value="">Choose an event</option>
+            </select>
+            <small class="error-msg" aria-live="polite"></small>
+          </div>
+
+          <div class="field">
+            <label for="message">Anything we should know? <span class="muted">(optional)</span></label>
+            <textarea id="message" name="message" rows="3" maxlength="200"></textarea>
+            <small class="char-count"><span id="charCount">0</span>/200</small>
+          </div>
+
+          <div class="field checkbox-field">
+            <label class="checkbox">
+              <input type="checkbox" id="agree" name="agree">
+              <span>I agree to follow the event code of conduct *</span>
+            </label>
+            <small class="error-msg" aria-live="polite"></small>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block" id="submitBtn">Submit registration</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ACCORDION ============ -->
+    <section class="section section-alt" id="faq">
+      <div class="container narrow">
+        <h2 class="section-title reveal">FAQ</h2>
+        <div class="accordion" id="accordion">
+          <div class="acc-item reveal">
+            <button class="acc-header" aria-expanded="false">Is there a registration fee?<span class="acc-icon" aria-hidden="true">+</span></button>
+            <div class="acc-panel"><p>Workshops are free. The hackathon has a ₹200 team fee to cover food for the night.</p></div>
+          </div>
+          <div class="acc-item reveal">
+            <button class="acc-header" aria-expanded="false">Can first-year students join?<span class="acc-icon" aria-hidden="true">+</span></button>
+            <div class="acc-panel"><p>Yes. Every workshop marked "Beginner" assumes no prior experience.</p></div>
+          </div>
+          <div class="acc-item reveal">
+            <button class="acc-header" aria-expanded="false">Do I need to bring a laptop?<span class="acc-icon" aria-hidden="true">+</span></button>
+            <div class="acc-panel"><p>For workshops and the hackathon, yes. Talks don't need one.</p></div>
+          </div>
+          <div class="acc-item reveal">
+            <button class="acc-header" aria-expanded="false">Will I get a certificate?<span class="acc-icon" aria-hidden="true">+</span></button>
+            <div class="acc-panel"><p>Every participant gets a digital certificate within a week of the event.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 Spectra · Built with HTML, CSS and plain JavaScript as a frontend internship task.</p>
+    </div>
+  </footer>
+
+  <!-- Event detail modal -->
+  <div class="modal-overlay" id="modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="Close details">&times;</button>
+      <span class="tag" id="modalTag"></span>
+      <h3 id="modalTitle"></h3>
+      <p class="modal-meta" id="modalMeta"></p>
+      <p id="modalDesc"></p>
+      <button class="btn btn-primary" id="modalRegister">Register for this event</button>
+    </div>
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Back to top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <script src="js/script.js" defer></script>
+</body>
+</html>
